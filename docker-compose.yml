@@ -28,10 +28,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: iniative
+      MYSQL_USER: iniative
+      MYSQL_PASSWORD: iniative
+      MYSQL_ROOT_PASSWORD: iniative
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:
@@ -44,21 +44,22 @@ services:
     container_name: php
     volumes:
       - ./src:/var/www/html
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     ports:
       - "9000:9000"
     networks:
       - laravel
-
-  composer:
-    image: composer:latest
-    container_name: composer
-    volumes:
-      - ./src:/var/www/html
-    working_dir: /var/www/html
-    depends_on:
-      - php
-    networks:
-      - laravel
+#
+#  composer:
+#    image: composer:latest
+#    container_name: composer
+#    volumes:
+#      - ./src:/var/www/html
+#    working_dir: /var/www/html
+#    depends_on:
+#      - php
+#    networks:
+#      - laravel
 
   npm:
     image: node:13.7
